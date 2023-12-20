@@ -65,7 +65,7 @@ def stream_markup_timer(_, chat_id, played, dur):
                 callback_data="GetTimer",
             )
         ],
-        [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
+        [InlineKeyboardButton(text="🍒 𝐒𝐭𝐫𝐞𝐚𝐦𝐢𝐧𝐠 𝐂𝐥𝐨𝐬𝐞 🍒", callback_data="close")],
     ]
     return buttons
 
