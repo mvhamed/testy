@@ -26,7 +26,7 @@ def private_panel(_):
         ],
         [
             InlineKeyboardButton(
-                text="ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅꜱ 🥀", callback_data="settings_back_helper"
+                text="Hᴇʟᴘ & Cᴏᴍᴍᴀɴᴅꜱ 🥀", callback_data="settings_back_helper"
             )
         ],
         [
@@ -39,7 +39,7 @@ def private_panel(_):
         ],
         [ 
           InlineKeyboardButton(
-                text="ʟᴀɴɢᴜᴀɢᴇꜱ 🌈", callback_data="LG"
+                text="Lᴀɴɢᴜᴀɢᴇꜱ 🌈", callback_data="LG"
             )
         ],
     ]
