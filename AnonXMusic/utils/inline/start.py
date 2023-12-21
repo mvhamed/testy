@@ -37,5 +37,10 @@ def private_panel(_):
                 text="Oᴡɴᴇʀ ⛵", url="https://t.me/lippsxd"
             )
         ],
+        [ 
+          InlineKeyboardButton(
+                text="ʟᴀɴɢᴜᴀɢᴇꜱ 🌈", callback_data="LG"
+            )
+        ],
     ]
     return buttons
