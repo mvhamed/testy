@@ -34,7 +34,7 @@ def private_panel(_):
                 text="Uᴘᴅᴀᴛᴇꜱ 🎊", url=config.SUPPORT_CHANNEL
             ),
             InlineKeyboardButton(
-                text="Oᴡɴᴇʀ ⛵", url="https://t.me/lippsxd"
+                text="Oᴡɴᴇʀ ⛵", url="https://t.me/ITS_HELLL_BOYYY"
             )
         ],
         [ 
