@@ -39,7 +39,7 @@ def private_panel(_):
         ],
         [ 
           InlineKeyboardButton(
-                text="Lᴀɴɢᴜᴀɢᴇꜱ 🌈", callback_data="donate"
+                text="Lᴀɴɢᴜᴀɢᴇꜱ 🌈", callback_data="LG"
             )
         ],
     ]
