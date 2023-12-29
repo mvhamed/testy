@@ -31,7 +31,7 @@ def private_panel(_):
         ],
         [
             InlineKeyboardButton(
-                text="Uᴘᴅᴀᴛᴇꜱ 🎊", callback_data="lippsxd"
+                text="Uᴘᴅᴀᴛᴇꜱ 🎊", url=config.SUPPORT_CHANNEL"
             ),
             InlineKeyboardButton(
                 text="Oᴡɴᴇʀ ⛵", url="https://t.me/ITS_HELLL_BOYYY"
