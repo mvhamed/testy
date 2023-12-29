@@ -34,7 +34,7 @@ from AnonXMusic.utils.inline.settings import (
     vote_mode_markup,
 )
 from AnonXMusic.utils.inline.start import private_panel
-from config import BANNED_USERS, OWNER_ID
+from config import BANNED_USERS, OWNER_ID, SUPPORT_CHANNEL, SUPPORT_CHAT
 
 
 @app.on_message(
@@ -70,11 +70,33 @@ async def settings_cb(client, CallbackQuery, _):
 @languageCB
 async def gib_repo(client, CallbackQuery, _):
     await CallbackQuery.edit_message_media(
-        InputMediaPhoto("https://graph.org/file/20a9b468833f3088556b1.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
+            InputMediaPhoto("https://telegra.ph/file/009721b60c220e29d194a.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
     ),
     return await CallbackQuery.edit_message_text(
         reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]]
+        ),
+    )
+
+@app.on_callback_query(filters.regex("lippsxd") & ~BANNED_USERS)
+@languageCB
+async def gib_repo(client, CallbackQuery, _):
+    await CallbackQuery.edit_message_media(
+          InputMediaPhoto("https://telegra.ph/file/009721b60c220e29d194a.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
+    ),
+    return await CallbackQuery.edit_message_text(
+        reply_markup=InlineKeyboardMarkup(
+        [ 
+            [
+            InlineKeyboardButton(
+                text="Uᴘᴅᴀᴛᴇꜱ 🎊", url=config.SUPPORT_CHANNEL
+            ),
+            InlineKeyboardButton(
+                text="Support", url="config.SUPPORT_CHAT"
+            )
+        ],
+            [InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]
+        ]
         ),
     )
 
