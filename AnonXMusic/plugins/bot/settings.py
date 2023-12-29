@@ -65,40 +65,7 @@ async def settings_cb(client, CallbackQuery, _):
         ),
         reply_markup=InlineKeyboardMarkup(buttons),
     )
-
-@app.on_callback_query(filters.regex("donate") & ~BANNED_USERS)
-@languageCB
-async def gib_repo(client, CallbackQuery, _):
-    await CallbackQuery.edit_message_media(
-            InputMediaPhoto("https://telegra.ph/file/009721b60c220e29d194a.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
-    ),
-    return await CallbackQuery.edit_message_text(
-        reply_markup=InlineKeyboardMarkup(
-        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]]
-        ),
-    )
-
-@app.on_callback_query(filters.regex("lippsxd") & ~BANNED_USERS)
-@languageCB
-async def gib_repo(client, CallbackQuery, _):
-    await CallbackQuery.edit_message_media(
-          InputMediaPhoto("https://telegra.ph/file/009721b60c220e29d194a.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
-    ),
-    return await CallbackQuery.edit_message_text(
-        reply_markup=InlineKeyboardMarkup(
-        [ 
-            [
-            InlineKeyboardButton(
-                text="Uᴘᴅᴀᴛᴇꜱ 🎊", url=config.SUPPORT_CHANNEL
-            ),
-            InlineKeyboardButton(
-                text="Support", url=config.SUPPORT_CHAT
-            )
-        ],
-            [InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]
-        ]
-        ),
-    )
+
 
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
