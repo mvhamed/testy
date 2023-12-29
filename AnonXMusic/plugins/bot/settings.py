@@ -66,6 +66,17 @@ async def settings_cb(client, CallbackQuery, _):
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
+@app.on_callback_query(filters.regex("donate") & ~BANNED_USERS)
+@languageCB
+async def gib_repo(client, CallbackQuery, _):
+    await CallbackQuery.edit_message_media(
+        InputMediaPhoto("https://graph.org/file/20a9b468833f3088556b1.jpg", caption="<b><u>Fᴇᴇʟ Fʀᴇᴇ ᴛᴏ Dᴏɴᴀᴛᴇ</u></b>\n\nUᴘɪ ɪᴅ: satyammahajan070@paytm\nBɪɴᴀɴᴄᴇ ɪᴅ: 824335517"),
+    ),
+    return await CallbackQuery.edit_message_text(
+        reply_markup=InlineKeyboardMarkup(
+        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data=f"settingsback_helper")]]
+        ),
+    )
 
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
