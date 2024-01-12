@@ -27,12 +27,14 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    return image.resize((newWidth, newHeight))
+    newImage = image.resize((newWidth, newHeight))
+    return newImage
+ahmed = ""
 
 
 async def get_thumb(videoid):
-    if os.path.isfile(f"cache/{videoid}{photo}.png"):
-        return f"cache/{videoid}{photo}.png"
+    if os.path.isfile(f"{videoid}{photo}.png"):
+        return f"{videoid}{photo}.png"
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
@@ -94,11 +96,8 @@ async def get_thumb(videoid):
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
-            (5, 5), "HARLEY MUSIC BOT", fill="white", font=name_font
-        )
-        draw.text(
             (600, 150),
-            "STARTED PLAYING",
+            "JAKOO PlAYiNg",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
@@ -144,7 +143,7 @@ async def get_thumb(videoid):
             (255, 255, 255),
             font=arial,
         )
-        background.save(f"cache/{videoid}{photo}.png")
-        return f"cache/{videoid}{photo}.png"
+        background.save(f"{videoid}{photo}.png")
+        return f"{videoid}{photo}.png"
     except Exception:
         return YOUTUBE_IMG_URL
