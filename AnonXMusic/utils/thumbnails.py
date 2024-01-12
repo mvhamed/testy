@@ -21,8 +21,8 @@ def changeImageSize(maxWidth, maxHeight, image):
 
 
 async def get_thumb(videoid, photo):
-    if os.path.isfile(f"{videoid}{photo}.png"):
-        return f"{videoid}{photo}.png"
+    if os.path.isfile(f"cache/{videoid}{photo}.png"):
+        return f"cache/{videoid}{photo}.png"
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
@@ -129,10 +129,10 @@ async def get_thumb(videoid, photo):
             font=arial,
         )
         try:
-            os.remove(f"{videoid}{photo}.png")
+            os.remove(f"cache/{videoid}{photo}.png")
         except:
             pass
-        background.save(f"{videoid}{photo}.png")
-        return f"{videoid}{photo}.png"
+        background.save(f"cache/{videoid}{photo}.png")
+        return f"cache/{videoid}{photo}.png"
     except Exception:
         return YOUTUBE_IMG_URL
