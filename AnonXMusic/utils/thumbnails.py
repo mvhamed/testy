@@ -71,9 +71,9 @@ async def get_thumb(videoid):
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
         try:
-        elnqybv = Image.open(f"{photo}")
+        youtube = Image.open(f"{photo}")
         except:
-          elnqybv = Image.open(f"cache/thumb{videoid}.png")
+          youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
