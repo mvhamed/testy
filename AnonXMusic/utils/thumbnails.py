@@ -70,6 +70,7 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
+        try:
         elnqybv = Image.open(f"{photo}")
         except:
           elnqybv = Image.open(f"cache/thumb{videoid}.png")
