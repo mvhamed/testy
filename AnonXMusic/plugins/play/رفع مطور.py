@@ -1,7 +1,10 @@
-from pyrogram import Client, filters, Message
-
-casery = "mvhmed"
-DEVS =[f"{casery}"] 
+import json
+from pyrogram import Client, filters
+from pyrogram.enums import ChatMembersFilter
+from pyrogram import enums
+import json
+from pyrogram import Client, filters
+from AnonXMusic import app
 
 @app.on_message(filters.command("رفع مطور", "") & filters.group, group=5458658)
 async def mazojgvmbie(client, message):
