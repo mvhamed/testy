@@ -20,7 +20,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return image.resize((newWidth, newHeight))
 
 
-async def get_thumb(videoid):
+async def get_thumb(videoid, username):
     if os.path.isfile(f"cache/{videoid}.png"):
         return f"cache/{videoid}.png"
 
@@ -57,7 +57,7 @@ async def get_thumb(videoid):
                     await f.write(await resp.read())
                     await f.close()
 
-        youtube = Image.open(f"cache/thumb{videoid}.png")
+        youtube = Image.open(f"cache/thumb{username}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
