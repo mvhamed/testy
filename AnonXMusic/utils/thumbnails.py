@@ -147,4 +147,4 @@ async def get_thumb(videoid, photo):
         return f"{videoid}{photo}.png"
    except Exception as a:
         print(a)
-        return YOUTUBE_IMG_URL
+        return ahmed
