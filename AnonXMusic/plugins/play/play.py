@@ -26,20 +26,11 @@ from config import BANNED_USERS, lyrical
 
 
 @app.on_message(
-    filters.command(
-        [
-            "play",
-            "تشغيل",
-            "vplay",
-            "cplay",
-            "cvplay",
-            "playforce",
-            "vplayforce",
-            "cplayforce",
-            "cvplayforce",
-        ]
-    )
-    & filters.group
+    filters.command(["تشغيل","شغل","/play"], "")
+    & ~BANNED_USERS
+)
+@app.on_message(
+    filters.command(["/vplay"], "")
     & ~BANNED_USERS
 )
 @PlayWrapper
