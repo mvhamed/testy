@@ -6,8 +6,7 @@ import json
 from pyrogram import Client, filters
 from AnonXMusic import app
 
-casery = "mvhmed"
-DEVS =[f"{casery}"] 
+
 
 @app.on_message(filters.command("رفع مطور", "") & filters.group, group=5458658)
 async def mazojgvmbie(client, message):
