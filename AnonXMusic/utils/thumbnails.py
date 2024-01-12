@@ -133,6 +133,6 @@ async def get_thumb(videoid, client, username, photo):
         except:
             pass
         background.save(f"{username}.png")
-        return f"username}.png"
+        return f"{username}.png"
     except Exception:
         return YOUTUBE_IMG_URL
