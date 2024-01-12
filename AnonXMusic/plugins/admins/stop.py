@@ -10,8 +10,8 @@ from config import BANNED_USERS
 
 
 @app.on_message(
-    filters.command(["end", "stop", "cend", "cstop"]) & filters.group & ~BANNED_USERS
-
+    filters.command(["end", "stop", "cend", "cstop", "ايقاف"]) & filters.group & ~BANNED_USERS
+)
 @AdminRightsCheck
 async def stop_music(cli, message: Message, _, chat_id):
     if not len(message.command) == 1:
