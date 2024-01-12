@@ -11,7 +11,7 @@
 import os
 import re
 import textwrap
-
+from typing import Union
 import aiofiles
 import aiohttp
 from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
