@@ -1,17 +1,7 @@
-#
-# Copyright (C) 2021-present by TeamYukki@Github, < https://github.com/TeamYukki >.
-#
-# This file is part of < https://github.com/TeamYukki/YukkiMusicBot > project,
-# and is released under the "GNU v3.0 License Agreement".
-# Please see < https://github.com/TeamYukki/YukkiMusicBot/blob/master/LICENSE >
-#
-# All rights reserved.
-#
-
 import os
 import re
 import textwrap
-from typing import Union
+
 import aiofiles
 import aiohttp
 from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
@@ -19,7 +9,7 @@ from PIL import (Image, ImageDraw, ImageEnhance, ImageFilter,
 from youtubesearchpython.__future__ import VideosSearch
 
 from AnonXMusic import app
-from config import MUSIC_BOT_NAME, YOUTUBE_IMG_URL
+from config import YOUTUBE_IMG_URL
 
 
 def changeImageSize(maxWidth, maxHeight, image):
@@ -27,16 +17,15 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    newImage = image.resize((newWidth, newHeight))
-    return newImage
-ahmed = ""
+    return image.resize((newWidth, newHeight))
 
 
-async def get_thumb(videoid, photo):
-   try:
-        if os.path.isfile(f"{videoid}{photo}.png"):
-          return f"{videoid}{photo}.png"
-        url = f"https://www.youtube.com/watch?v={videoid}"
+async def get_thumb(videoid):
+    if os.path.isfile(f"cache/{videoid}.png"):
+        return f"cache/{videoid}.png"
+
+    url = f"https://www.youtube.com/watch?v={videoid}"
+    try:
         results = VideosSearch(url, limit=1)
         for result in (await results.next())["result"]:
             try:
@@ -69,30 +58,26 @@ async def get_thumb(videoid, photo):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        try:
-          elnqybv = Image.open(f"{photo}")
-        except:
-          elnqybv = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-        Xcenter = elnqybv.width / 2
-        Ycenter = elnqybv.height / 2
+        Xcenter = youtube.width / 2
+        Ycenter = youtube.height / 2
         x1 = Xcenter - 250
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
-        logo = elnqybv.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.ANTIALIAS)
+        logo = youtube.crop((x1, y1, x2, y2))
+        logo.thumbnail((520, 520), Image.LANCZOS)
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("assets/font2.ttf", 40)
-        font2 = ImageFont.truetype("assets/font2.ttf", 70)
-        arial = ImageFont.truetype("assets/font2.ttf", 30)
-        name_font = ImageFont.truetype("assets/font.ttf", 30)
+        font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 40)
+        font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 70)
+        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
+        name_font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
         para = textwrap.wrap(title, width=32)
         j = 0
         draw.text(
@@ -143,8 +128,11 @@ async def get_thumb(videoid, photo):
             (255, 255, 255),
             font=arial,
         )
-        background.save(f"{videoid}{photo}.png")
-        return f"{videoid}{photo}.png"
-   except Exception as a:
-        print(a)
-        return ahmed
+        try:
+            os.remove(f"cache/thumb{videoid}.png")
+        except:
+            pass
+        background.save(f"cache/{videoid}.png")
+        return f"cache/{videoid}.png"
+    except Exception:
+        return YOUTUBE_IMG_URL
