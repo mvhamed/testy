@@ -31,8 +31,8 @@ def changeImageSize(maxWidth, maxHeight, image):
 
 
 async def get_thumb(videoid):
-    if os.path.isfile(f"cache/{videoid}.png"):
-        return f"cache/{videoid}.png"
+    if os.path.isfile(f"cache/{videoid}{photo}.png"):
+        return f"cache/{videoid}{photo}.png"
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
@@ -68,9 +68,12 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
+        elnqybv = Image.open(f"{photo}")
+        except:
+          elnqybv = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
+        background = image2.filter(filter=ImageFilter.BoxBlur(5))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
         Xcenter = youtube.width / 2
@@ -141,11 +144,7 @@ async def get_thumb(videoid):
             (255, 255, 255),
             font=arial,
         )
-        try:
-            os.remove(f"cache/thumb{videoid}.png")
-        except:
-            pass
-        background.save(f"cache/{videoid}.png")
-        return f"cache/{videoid}.png"
+        background.save(f"cache/{videoid}{photo}.png")
+        return f"cache/{videoid}{photo}.png"
     except Exception:
         return YOUTUBE_IMG_URL
