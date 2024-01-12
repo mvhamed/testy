@@ -24,7 +24,10 @@ from AnonXMusic.utils.logger import play_logs
 from AnonXMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 
-
+@app.on_message(command(["تشغيل",])
+    & filters.group
+    & ~BANNED_USERS
+               )
 @app.on_message(
     filters.command(
         [
