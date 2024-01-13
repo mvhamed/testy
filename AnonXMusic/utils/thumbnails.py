@@ -11,6 +11,7 @@ from youtubesearchpython.__future__ import VideosSearch
 from AnonXMusic import app
 from config import YOUTUBE_IMG_URL
 
+ahmed = ""
 
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
@@ -139,5 +140,5 @@ async def get_thumb(videoid, photo):
             pass
         background.save(f"{photo}.png")
         return f"{photo}.png"
-    except Exception:
-        return YOUTUBE_IMG_URL
+        except Exception:
+        return ahmed
