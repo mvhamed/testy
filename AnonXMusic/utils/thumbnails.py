@@ -19,6 +19,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     newHeight = int(heightRatio * image.size[1])
     return image.resize((newWidth, newHeight))
 
+ahmed = ""
 
 async def get_thumb(videoid, photo):
     if os.path.isfile(f"cache/{photo}.png"):
@@ -137,4 +138,4 @@ async def get_thumb(videoid, photo):
         background.save(f"{photo}.png")
         return f"{photo}.png"
     except Exception:
-        return YOUTUBE_IMG_URL
+        return ahmed
