@@ -117,9 +117,9 @@ async def skip(cli, message: Message, _, chat_id):
             return await message.reply_text(_["call_6"])
         button = stream_markup(_, chat_id)
         try:
-            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-        except:
-            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+        except:
+            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
         img = await get_thumb(videoid, photo)
         run = await message.reply_photo(
             photo=img,
@@ -154,9 +154,9 @@ async def skip(cli, message: Message, _, chat_id):
             return await mystic.edit_text(_["call_6"])
         button = stream_markup(_, chat_id)
         try:
-            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-        except:
-            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+        except:
+            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
         img = await get_thumb(videoid, photo)
         run = await message.reply_photo(
             photo=img,
@@ -227,9 +227,9 @@ async def skip(cli, message: Message, _, chat_id):
         else:
             button = stream_markup(_, chat_id)
             try:
-                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-            except:
-                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+            except:
+                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
             img = await get_thumb(videoid, photo)
             run = await message.reply_photo(
                 photo=img,
