@@ -6,7 +6,6 @@ import traceback
 import aiofiles
 import aiohttp
 import requests
-import wget
 import yt_dlp
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, MessageNotModified
