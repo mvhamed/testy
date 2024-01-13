@@ -119,8 +119,8 @@ async def skip(cli, message: Message, _, chat_id):
         try:
              userx = await app.get_users(user_id)
             if videoid:
-              if userx.photo:
-               photo_id = userx.photo.big_file_id
+            if userx.photo:
+              photo_id = userx.photo.big_file_id
               else:
               ahmed = await app.get_chat(OWNER[0])
               photo_id = ahmed.photo.big_file_id
