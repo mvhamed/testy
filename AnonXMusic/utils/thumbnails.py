@@ -140,5 +140,5 @@ async def get_thumb(videoid, photo):
             pass
         background.save(f"{photo}.png")
         return f"{photo}.png"
-        except Exception:
+    except Exception:
         return ahmed
