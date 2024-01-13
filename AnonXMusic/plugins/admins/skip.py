@@ -13,9 +13,8 @@ from AnonXMusic.utils.thumbnails import get_thumb
 from config import BANNED_USERS
 
 
-
 @app.on_message(
-    filters.command(["skip", "cskip", "next", "cnext", "تخطي"]) & filters.group & ~BANNED_USERS
+    command(["/skip", "تخطي", "/next", "التالي"]) & ~BANNED_USERS
 )
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
@@ -93,6 +92,7 @@ async def skip(cli, message: Message, _, chat_id):
     queued = check[0]["file"]
     title = (check[0]["title"]).title()
     user = check[0]["by"]
+    user_id = check[0]["user_id"]
     streamtype = check[0]["streamtype"]
     videoid = check[0]["vidid"]
     status = True if str(streamtype) == "video" else None
@@ -116,7 +116,11 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup(_, chat_id)
-        img = await get_thumb(videoid)
+        try:
+            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+        except:
+            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+        img = await get_thumb(videoid, photo)
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
@@ -149,7 +153,11 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             return await mystic.edit_text(_["call_6"])
         button = stream_markup(_, chat_id)
-        img = await get_thumb(videoid)
+        try:
+            photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+        except:
+            photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+        img = await get_thumb(videoid, photo)
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
@@ -218,7 +226,11 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]["markup"] = "tg"
         else:
             button = stream_markup(_, chat_id)
-            img = await get_thumb(videoid)
+            try:
+                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+            except:
+                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+            img = await get_thumb(videoid, photo)
             run = await message.reply_photo(
                 photo=img,
                 caption=_["stream_1"].format(
