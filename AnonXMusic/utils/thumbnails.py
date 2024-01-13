@@ -130,7 +130,7 @@ async def get_thumb(videoid, photo):
             font=arial,
         )
         try:
-        	os.remove(f"{photo}")
+            os.remove(f"{photo}")
             os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
