@@ -228,9 +228,9 @@ async def del_back_playlist(client, CallbackQuery, _):
                 return await CallbackQuery.message.reply_text(_["call_6"])
             button = stream_markup(_, chat_id)
             try:
-                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-            except:
-                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+            except:
+                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
             img = await get_thumb(videoid, photo)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
@@ -268,9 +268,9 @@ async def del_back_playlist(client, CallbackQuery, _):
                 return await mystic.edit_text(_["call_6"])
             button = stream_markup(_, chat_id)
             try:
-                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-            except:
-                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+            except:
+                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
             img = await get_thumb(videoid, photo)
             run = await CallbackQuery.message.reply_photo(
                 photo=img,
@@ -343,9 +343,9 @@ async def del_back_playlist(client, CallbackQuery, _):
             else:
                 button = stream_markup(_, chat_id)
                 try:
-                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                except:
-                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+                except:
+                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
                 img = await get_thumb(videoid, photo)
                 run = await CallbackQuery.message.reply_photo(
                     photo=img,
@@ -407,4 +407,3 @@ async def markup_timer():
 
 
 asyncio.create_task(markup_timer())
-            
