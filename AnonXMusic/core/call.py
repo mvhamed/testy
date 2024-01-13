@@ -313,11 +313,6 @@ class Call(PyTgCalls):
                 stream,
                 stream_type=StreamType().pulse_stream,
             )
-            try:
-                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-        except:
-                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
-            )
         except NoActiveGroupCall:
             raise AssistantErr(_["call_8"])
         except AlreadyJoinedError:
@@ -397,6 +392,10 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
+                try:
+                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+                except:
+                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
                 img = await get_thumb(videoid, photo)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
