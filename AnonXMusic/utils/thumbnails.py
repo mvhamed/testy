@@ -58,7 +58,7 @@ async def get_thumb(videoid, photo):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        Shadow = Image.open(f"cache/{photo}")
+        Shadow = Image.open(f"{photo}")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
@@ -130,10 +130,11 @@ async def get_thumb(videoid, photo):
             font=arial,
         )
         try:
+        	os.remove(f"{photo}")
             os.remove(f"cache/thumb{videoid}.png")
         except:
             pass
-        background.save(f"cache/{photo}.png")
-        return f"cache/{photo}.png"
+        background.save(f"{photo}.png")
+        return f"{photo}.png"
     except Exception:
         return YOUTUBE_IMG_URL
