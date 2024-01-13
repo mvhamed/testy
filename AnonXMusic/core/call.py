@@ -314,9 +314,10 @@ class Call(PyTgCalls):
                 stream_type=StreamType().pulse_stream,
             )
             try:
-                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                except:
-                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+        except:
+                photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+            )
         except NoActiveGroupCall:
             raise AssistantErr(_["call_8"])
         except AlreadyJoinedError:
