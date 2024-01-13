@@ -17,12 +17,13 @@ def changeImageSize(maxWidth, maxHeight, image):
     heightRatio = maxHeight / image.size[1]
     newWidth = int(widthRatio * image.size[0])
     newHeight = int(heightRatio * image.size[1])
-    return image.resize((newWidth, newHeight))
+    newImage = image.resize((newWidth, newHeight))
+    return newImage
 
 
-async def get_thumb(videoid, client, username, photo):
-    if os.path.isfile(f"{username}.png"):
-        return f"{username}.png"
+async def get_thumb(videoid, photo):
+    if os.path.isfile(f"{photo}.png"):
+        return f"{photo}.png"
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     try:
@@ -32,6 +33,8 @@ async def get_thumb(videoid, client, username, photo):
                 title = result["title"]
                 title = re.sub("\W+", " ", title)
                 title = title.title()
+                test = translator.translate(title, dest="en")
+                title = test.text
             except:
                 title = "Unsupported Title"
             try:
@@ -52,25 +55,26 @@ async def get_thumb(videoid, client, username, photo):
             async with session.get(thumbnail) as resp:
                 if resp.status == 200:
                     f = await aiofiles.open(
-                        f"thumb{username}.png", mode="wb"
+                        f"thumb{videoid}.png", mode="wb"
                     )
                     await f.write(await resp.read())
                     await f.close()
 
-        youtube = Image.open(f"{photo}")
+        youtube = Image.open(f"thumb{videoid}.png")
+        SEMOv = Image.open(f"{photo}")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-        Xcenter = youtube.width / 2
-        Ycenter = youtube.height / 2
+        Xcenter = SEMOv.width / 2
+        Ycenter = SEMOv.height / 2
         x1 = Xcenter - 250
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
-        logo = youtube.crop((x1, y1, x2, y2))
-        logo.thumbnail((520, 520), Image.LANCZOS)
+        logo = SEMOv.crop((x1, y1, x2, y2))
+        logo.thumbnail((520, 520), Image.ANTIALIAS)
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
@@ -129,10 +133,11 @@ async def get_thumb(videoid, client, username, photo):
             font=arial,
         )
         try:
-            os.remove(f"thumb{username}.png")
+            os.remove(f"{photo}")
+            os.remove(f"thumb{videoid}.png")
         except:
             pass
-        background.save(f"{username}.png")
-        return f"{username}.png"
+        background.save(f"{photo}.png")
+        return f"{photo}.png"
     except Exception:
         return YOUTUBE_IMG_URL
