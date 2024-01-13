@@ -13,7 +13,6 @@ from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
-from config import OWNER
 
 @Client.on_message(filters.command(["بحث"], ""))
 async def ytsearch(client, message):
