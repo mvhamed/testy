@@ -11,8 +11,6 @@ from youtubesearchpython.__future__ import VideosSearch
 from AnonXMusic import app
 from config import YOUTUBE_IMG_URL
 
-ahmed = ""
-
 def changeImageSize(maxWidth, maxHeight, image):
     widthRatio = maxWidth / image.size[0]
     heightRatio = maxHeight / image.size[1]
@@ -22,7 +20,9 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
 
 
-async def get_thumb(videoid, photo):
+ahmed = ""
+
+async def gen_thumb(videoid, photo):
     if os.path.isfile(f"{photo}.png"):
         return f"{photo}.png"
 
@@ -87,7 +87,7 @@ async def get_thumb(videoid, photo):
         j = 0
         draw.text(
             (600, 150),
-            "JAKOO PlAYiNg",
+            "NoNa PlAYiNg",
             fill="white",
             stroke_width=2,
             stroke_fill="white",
