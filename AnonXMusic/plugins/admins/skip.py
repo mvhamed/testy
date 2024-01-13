@@ -116,11 +116,15 @@ async def skip(cli, message: Message, _, chat_id):
         except:
             return await message.reply_text(_["call_6"])
         button = stream_markup(_, chat_id)
-        try:
-                photo = await app.get_chat(OWNER[0])
+                    userx = await app.get_users(user_id)
+            if videoid:
+              if userx.photo:
+                photo_id = userx.photo.big_file_id
+              else:
+                ahmed = await app.get_chat(OWNER[0])
                 photo_id = ahmed.photo.big_file_id
-                photo = await app.download_media(photo_id)
-        img = await get_thumb(videoid, photo)
+              photo = await app.download_media(photo_id)
+              img = await gen_thumb(videoid, photo)
         run = await message.reply_photo(
             photo=img,
             caption=_["stream_1"].format(
