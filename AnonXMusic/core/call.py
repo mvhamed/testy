@@ -396,7 +396,7 @@ class Call(PyTgCalls):
             except:
                 photo = await client.download_media((await client.get_users("6374172577")).photo.big_file_id)
 
-                photo = await gen_thumb(videoid, photo)
+                photo = await get_thumb(videoid, photo)
                 img = await get_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
