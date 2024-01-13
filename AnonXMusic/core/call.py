@@ -443,9 +443,9 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 try:
-                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                except:
-                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+                except:
+                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
                 img = await get_thumb(videoid, photo)
                 button = stream_markup(_, chat_id)
                 await mystic.delete()
@@ -535,9 +535,9 @@ class Call(PyTgCalls):
                     db[chat_id][0]["markup"] = "tg"
                 else:
                     try:
-                        photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
+                        photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
                     except:
-                        photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
+                        photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
                     img = await get_thumb(videoid, photo)
                     button = stream_markup(_, chat_id)
                     run = await app.send_photo(
