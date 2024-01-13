@@ -3,10 +3,10 @@ from pyrogram import Client, filters
 from strings import get_command
 from strings.filters import command
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions
-from ElNqYbMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
+from AnonXMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 from config import OWNER_ID
-from ElNqYbMusic.misc import SUDOERS as sudo
-from ElNqYbMusic.utils.database import (add_served_chat,
+from AnonXMusic.misc import SUDOERS as sudo
+from AnonXMusic.utils.database import (add_served_chat,
                                        is_served_chat,
                                        get_served_chats,
                                        add_served_user,
