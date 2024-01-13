@@ -391,7 +391,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                    try:
+                try:
                 photo = await client.download_media((await client.get_users("5940413527")).photo.big_file_id)
             except:
                 photo = await client.download_media((await client.get_users("6374172577")).photo.big_file_id)
