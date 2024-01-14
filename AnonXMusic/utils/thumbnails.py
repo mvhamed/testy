@@ -19,7 +19,6 @@ def changeImageSize(maxWidth, maxHeight, image):
     newHeight = int(heightRatio * image.size[1])
     return image.resize((newWidth, newHeight))
 
-ahmed = ""
 
 async def get_thumb(videoid, photo):
     if os.path.isfile(f"cache/{photo}.png"):
@@ -59,19 +58,19 @@ async def get_thumb(videoid, photo):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        Shadow = Image.open(f"{photo}")
+        jakoo = Image.open(f"{photo}")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(5))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-        Xcenter = Shadow.width / 2
-        Ycenter = Shadow.height / 2
+        Xcenter = jakoo.width / 2
+        Ycenter = jakoo.height / 2
         x1 = Xcenter - 250
         y1 = Ycenter - 250
         x2 = Xcenter + 250
         y2 = Ycenter + 250
-        logo = Shadow.crop((x1, y1, x2, y2))
+        logo = jakoo.crop((x1, y1, x2, y2))
         logo.thumbnail((520, 520), Image.LANCZOS)
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
@@ -138,4 +137,5 @@ async def get_thumb(videoid, photo):
         background.save(f"{photo}.png")
         return f"{photo}.png"
     except Exception:
-        return ahmed
+        return YOUTUBE_IMG_URL
+          
