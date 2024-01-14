@@ -355,7 +355,6 @@ class Call(PyTgCalls):
             _ = get_string(language)
             title = (check[0]["title"]).title()
             user = check[0]["by"]
-            user_id = check[0]["user_id"]
             original_chat_id = check[0]["chat_id"]
             streamtype = check[0]["streamtype"]
             videoid = check[0]["vidid"]
@@ -393,10 +392,12 @@ class Call(PyTgCalls):
                         text=_["call_6"],
                     )
                 try:
-                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                except:
-                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
-                img = await get_thumb(videoid, photo)
+                photo = await client.download_media((await client.get_users("5940413527")).photo.big_file_id)
+            except:
+                photo = await client.download_media((await client.get_users("6374172577")).photo.big_file_id)
+
+                photo = await get_thumb(videoid, photo)
+                img = await get_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -442,11 +443,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                try:
-                    photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                except:
-                    photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
-                img = await get_thumb(videoid, photo)
+                img = await get_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -534,11 +531,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 else:
-                    try:
-                        photo = await client.download_media((await client.get_users(user_id)).photo.big_file_id)
-                    except:
-                        photo = await client.download_media((await client.get_users(app.id)).photo.big_file_id)
-                    img = await get_thumb(videoid, photo)
+                    img = await get_thumb(videoid)
                     button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
